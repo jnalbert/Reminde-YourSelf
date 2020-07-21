@@ -3,9 +3,20 @@ const cors = require('cors');
 const morgan = require('morgan');
 const errorhandler = require('errorhandler');
 const bodyParser = require('body-parser');
-const sqlite3 = require('sqlite3');
+const mysql = require('mysql');
 
-const db = new sqlite3.Database('./database.sqlite');
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "Spike108523",
+    database: "reminders"
+  });
+  
+db.connect((err) => {
+    if (err) throw err;
+    console.log("Connected!");
+    });
+
 
 const app = express();
 const PORT = 4000;
@@ -20,7 +31,7 @@ app.use(bodyParser.json())
 app.post('/setReminder', (req, res, next) => {
     const body = req.body.reminder;
     console.log(body.name);
-    db.run(`INSERT INTO reminders (name, email, date1, time1, title, message)
+    db.query(`INSERT INTO reminders (name, email, date1, time1, title, message)
 	VALUES ( ${body.name}, ${body.email}, ${body.date}, ${body.time}, ${body.title}, ${body.message} ) `, (err) => {
         if (err) {
             next(err)
@@ -33,7 +44,7 @@ app.post('/setReminder', (req, res, next) => {
 
 // get all reminder currently set
 app.get('/getReminders', (req, res, next) => {
-    db.all(`SELECT * FROM reminders`, (err, rows) => {
+    db.query(`SELECT * FROM reminders`, (err, rows) => {
         if (err) {
             next(err)
         } else {
@@ -45,7 +56,7 @@ app.get('/getReminders', (req, res, next) => {
 // delets the rminder passed to it
 app.delete('/deleteReminder/:id', (req, res, next) => {
     const id = req.params.id
-    db.run(`DELETE FROM reminders WHERE id=${id}`, (err) => {
+    db.query(`DELETE FROM reminders WHERE id=${id}`, (err) => {
         if (err) {
             next(err)
         }

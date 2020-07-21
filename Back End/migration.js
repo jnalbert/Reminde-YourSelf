@@ -16,15 +16,29 @@
 
 const mysql = require('mysql');
 
-const con = mysql.createConnection({
+const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "Spike108523",
-    insecureAuth: true
+    database: "reminders"
   });
   
-con.connect((err) => {
+db.connect((err) => {
     if (err) throw err;
     console.log("Connected!");
+    db.query(`CREATE TABLE IF NOT EXISTS reminders (
+      id INTEGER NOT NULL AUTO_INCREMENT,
+      name VARCHAR(255) NOT NULL,
+      email VARCHAR(255) NOT NULL,
+      date1 DATE NOT NULL,
+      time1 TIME NOT NULL,
+      title VARCHAR(255) NOT NULL,
+      message VARCHAR(255) NOT NULL,
+      PRIMARY KEY (id)
+    )`, (err, result) => {
+      if (err) throw err;
+      console.log("table created")
+    })
+
     });
 
