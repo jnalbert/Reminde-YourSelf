@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body{
+  background: url('https://raw.githubusercontent.com/codingmarket07/Responsive-Contact-us-form/master/bg.jpg') no-repeat top center;
+  background-size: cover;
+  height: 100vh;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.heading {
+  padding: .77rem 0;
+  background-color: black;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.80rem;
+  color: #fff;
+  opacity: 84%;
+}
+
+
+.SetReminder {
+ left: 20%;
+ display: flex;
+ display: block;
+}
+
+.app {
+  display: flex;
+  display: block;
+}

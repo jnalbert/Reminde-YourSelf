@@ -1,0 +1,62 @@
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
+const errorhandler = require('errorhandler');
+const bodyParser = require('body-parser');
+const sqlite3 = require('sqlite3');
+
+const db = new sqlite3.Database('./database.sqlite');
+
+const app = express();
+const PORT = 4000;
+
+// middleware for each router
+app.use(cors());
+app.use(morgan('dev'));
+app.use(errorhandler())
+app.use(bodyParser.json())
+
+// This is the post to set a reminder
+app.post('/setReminder', (req, res, next) => {
+    const body = req.body.reminder;
+    console.log(body.name);
+    db.run(`INSERT INTO reminders (name, email, date1, time1, title, message)
+	VALUES ( ${body.name}, ${body.email}, ${body.date}, ${body.time}, ${body.title}, ${body.message} ) `, (err) => {
+        if (err) {
+            next(err)
+        } else {
+            res.sendStatus(201);
+        }
+            
+    })
+})
+
+// get all reminder currently set
+app.get('/getReminders', (req, res, next) => {
+    db.all(`SELECT * FROM reminders`, (err, rows) => {
+        if (err) {
+            next(err)
+        } else {
+            res.status(200).json({reminders: rows})
+        }
+    })
+})
+
+// delets the rminder passed to it
+app.delete('/deleteReminder/:id', (req, res, next) => {
+    const id = req.params.id
+    db.run(`DELETE FROM reminders WHERE id=${id}`, (err) => {
+        if (err) {
+            next(err)
+        }
+    })
+    res.sendStatus(204);
+})
+
+
+
+
+
+app.listen(PORT, () => {
+    console.log('The server is listening on port 4000');
+})
