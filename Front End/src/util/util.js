@@ -3,7 +3,7 @@ const axios = require('axios');
 const baseURL = 'http://localhost:4000'
 
 
-const Reminder = {
+const ReminderUtil = {
     setReminder(data) {
         axios.post(`${baseURL}/setReminder`, {
             reminder: {
@@ -22,14 +22,20 @@ const Reminder = {
         .then(response => {
             return response.data.reminders
         })
-    }
+    },
 
+
+    deletReminder(elID) {
+        const id = elID.id
+        console.log(id);
+        axios.delete(`${baseURL}/deleteReminder/${id}`)
+    }
 }
 
 
 
 
-module.exports = Reminder
+export default ReminderUtil
 
 
 

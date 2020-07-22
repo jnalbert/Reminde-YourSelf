@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import SetReminder from '../SetReminder/SetReminder.js';
 import RemindersList from '../RemindersList/RemindersList.js';
-import Reminder from '../util/util';
 import axios from 'axios'
 
 function App(props) {

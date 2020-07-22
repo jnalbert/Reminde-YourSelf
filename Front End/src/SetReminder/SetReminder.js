@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import './SetReminder.css'
-import Reminder from '../util/util';
+import ReminderUtil from '../util/util';
 
 function SetReminder(props) {
     const [state, setState] = useState({
@@ -52,7 +52,7 @@ function SetReminder(props) {
                 // checks if the time is in the correct formate
                 if (regxTime1.test(data.time) || regxTime2.test(data.time)) {
                     // api call
-                    Reminder.setReminder(data);
+                    ReminderUtil.setReminder(data);
 
                 } else {
                     alert("Time is not in the correct formate")
