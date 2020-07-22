@@ -1,47 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import SetReminder from '../SetReminder/SetReminder.js';
 import RemindersList from '../RemindersList/RemindersList.js';
-
+import Reminder from '../util/util';
+import axios from 'axios'
 
 function App(props) {
-  const [state, setState] = useState({
-    reminders: [{
-      id: 1,
-      name: 'Justin Albert 1',
-      email: "jnalbert879@gmail.com",
-      date: '2020/7/19',
-      time: '13:35',
-      title: "reminder",
-      message: "this is a test is should work 1"},
-      {
-      id: 2,
-      name: 'Justin Albert 2',
-      email: "jnalbert879@gmail.com",
-      date: '2020/7/19',
-      time: '13:35',
-      title: "reminder",
-      message: "this is a test is should work 2"},
-      {
-      id: 3,
-      name: 'Justin Albert 3',
-      email: "jnalbert879@gmail.com",
-      date: '2020/7/19',
-      time: '13:35',
-      title: "reminder",
-      message: "this is a test is should work 3"},
-      {
-      id: 4,
-      name: 'Justin Albert 4',
-      email: "jnalbert879@gmail.com",
-      date: '2020/7/19',
-      time: '13:35',
-      title: "reminder",
-      message: "this is a test is should work 3"}
-
-    ]
-  });
+  const [state, setState] = useState({reminders: []});
  
+
+ 
+  const getReminder = () => {axios.get('http://localhost:4000/getReminders')
+  .then(response => {
+    setState({reminders: response.data.reminders})
+  })
+}
+
+  
+ useEffect(() => {
+   getReminder()
+ }, [])
+
 
 
   return (

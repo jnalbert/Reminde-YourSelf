@@ -30,7 +30,7 @@ app.use(bodyParser.json())
 // This is the post to set a reminder
 app.post('/setReminder', (req, res, next) => {
     const body = req.body.reminder;
-    console.log(body.name);
+    // console.log(body.name)
     db.query(`INSERT INTO reminders (name, email, date1, time1, title, message)
 	VALUES ( ${body.name}, ${body.email}, ${body.date}, ${body.time}, ${body.title}, ${body.message} ) `, (err) => {
         if (err) {
@@ -44,16 +44,16 @@ app.post('/setReminder', (req, res, next) => {
 
 // get all reminder currently set
 app.get('/getReminders', (req, res, next) => {
-    db.query(`SELECT * FROM reminders`, (err, rows) => {
+    db.query(`SELECT * FROM reminders`, (err, result) => {
         if (err) {
             next(err)
         } else {
-            res.status(200).json({reminders: rows})
+            res.status(200).send({reminders: result})
         }
     })
 })
 
-// delets the rminder passed to it
+// deletes the rminder passed to it
 app.delete('/deleteReminder/:id', (req, res, next) => {
     const id = req.params.id
     db.query(`DELETE FROM reminders WHERE id=${id}`, (err) => {
