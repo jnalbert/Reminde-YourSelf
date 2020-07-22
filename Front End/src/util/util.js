@@ -28,7 +28,7 @@ const ReminderUtil = {
     deletReminder(elID) {
         const id = elID.id
         console.log(id);
-        axios.delete(`${baseURL}/deleteReminder/${id}`)
+        axios.delete(`${baseURL}/deleteReminder/${id}`) 
     }
 }
 
