@@ -20,8 +20,8 @@ const ReminderUtil = {
     getReminders() {
         axios.get(`${baseURL}/getReminders`)
         .then(response => {
-            return response.data.reminders
-        })
+            return {reminders: response.data.reminders}
+            })
     },
 
 
@@ -31,6 +31,8 @@ const ReminderUtil = {
         axios.delete(`${baseURL}/deleteReminder/${id}`) 
     }
 }
+
+
 
 
 

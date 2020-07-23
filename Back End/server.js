@@ -65,6 +65,18 @@ app.delete('/deleteReminder/:id', (req, res, next) => {
 })
 
 
+// get the reminder with the date greater than the current date
+app.get('/cronJobReminders', (req, res, next) => {
+    db.query("SELECT * FROM reminders.reminders WHERE date1 >= current_date() ORDER BY date1, time1 LIMIT 5", (err, result) => {
+        if (err) {
+            next(err)
+        } else {
+            res.status(200).send({reminders: result})
+        }
+    })
+})
+
+
 
 
 
