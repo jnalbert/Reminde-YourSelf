@@ -1,3 +1,4 @@
+const Reminder = require('./models/reminders')
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -13,6 +14,14 @@ mongoose.connect(config.get('mongo_uri'), {
 const dbMon = mongoose.connection;
 dbMon.once('open', function() {
     console.log("Cloud Atlas Connected")
+  });
+let reminder = new Reminder({name: 'ryan', email: 'test', reminder_date: Date.now(), title: "test", message: 'test'});
+
+reminder.save(function (err) {
+    if (err) {
+        console.log(err)
+    };
+    console.log("WE Saved")
   });
 
 const app = express();
