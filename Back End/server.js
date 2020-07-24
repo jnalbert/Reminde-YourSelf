@@ -3,20 +3,17 @@ const cors = require('cors');
 const morgan = require('morgan');
 const errorhandler = require('errorhandler');
 const bodyParser = require('body-parser');
-const mysql = require('mysql');
+var Config = require('config-js');
+var config = new Config('./config.js');
+const mongoose = require('mongoose')
 
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Spike108523",
-    database: "reminders"
+mongoose.connect(config.get('mongo_uri'), {
+  useNewUrlParser: true,
+})
+const dbMon = mongoose.connection;
+dbMon.once('open', function() {
+    console.log("Cloud Atlas Connected")
   });
-  
-db.connect((err) => {
-    if (err) throw err;
-    console.log("Connected!");
-    });
-
 
 const app = express();
 const PORT = 4000;
