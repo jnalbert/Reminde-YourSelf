@@ -8,6 +8,8 @@ var Config = require('config-js');
 var config = new Config('./config.js');
 const mongoose = require('mongoose')
 
+
+// conect to monggose db
 mongoose.connect(config.get('mongo_uri'), {
   useNewUrlParser: true,
 })
@@ -15,14 +17,16 @@ const dbMon = mongoose.connection;
 dbMon.once('open', function() {
     console.log("Cloud Atlas Connected")
   });
-let reminder = new Reminder({name: 'ryan', email: 'test', reminder_date: Date.now(), title: "test", message: 'test'});
 
-reminder.save(function (err) {
-    if (err) {
-        console.log(err)
-    };
-    console.log("WE Saved")
-  });
+
+// let reminder = new Reminder({name: 'ryan', email: 'test', reminder_date: Date.now(), title: "test", message: 'test'});
+
+// reminder.save(function (err) {
+//     if (err) {
+//         console.log(err)
+//     };
+//     console.log("WE Saved")
+//   });
 
 const app = express();
 const PORT = 4000;
@@ -37,49 +41,63 @@ app.use(bodyParser.json())
 app.post('/setReminder', (req, res, next) => {
     const body = req.body.reminder;
     // console.log(body.name)
-    db.query(`INSERT INTO reminders (name, email, date1, time1, title, message)
-	VALUES ( ${body.name}, ${body.email}, ${body.date}, ${body.time}, ${body.title}, ${body.message} ) `, (err) => {
+    const timeUTC = new Date(`${body.date} ${body.time}`)
+
+    const reminder = new Reminder({name: body.name, email: body.email, reminder_date: timeUTC, title: body.title, message: body.message})
+
+    reminder.save((err) => {
         if (err) {
             next(err)
         } else {
-            res.sendStatus(201);
+            console.log("it saved!")
+            res.sendStatus(201)
         }
-            
     })
+
 })
 
 // get all reminder currently set
 app.get('/getReminders', (req, res, next) => {
-    db.query(`SELECT * FROM reminders`, (err, result) => {
+
+    Reminder.find({is_deleted: false}, (err, results) => {
         if (err) {
             next(err)
         } else {
-            res.status(200).send({reminders: result})
+            res.status(200).send({reminders: results})
         }
     })
+
 })
 
 // deletes the rminder passed to it
 app.delete('/deleteReminder/:id', (req, res, next) => {
     const id = req.params.id
-    db.query(`DELETE FROM reminders WHERE id=${id}`, (err) => {
+
+    Reminder.findOneAndUpdate({_id: id}, {is_deleted: true}, (err) => {
         if (err) {
             next(err)
+        } else {
+            res.sendStatus(204);
         }
     })
-    res.sendStatus(204);
+
+
 })
 
 
 // get the reminder with the date greater than the current date
 app.get('/cronJobReminders', (req, res, next) => {
-    db.query("SELECT * FROM reminders.reminders WHERE date1 >= current_date() ORDER BY date1, time1 LIMIT 5", (err, result) => {
-        if (err) {
-            next(err)
-        } else {
-            res.status(200).send({reminders: result})
-        }
-    })
+
+    Reminder.find({is_deleted: false})
+
+
+    // db.query("SELECT * FROM reminders.reminders WHERE date1 >= current_date() ORDER BY date1, time1 LIMIT 5", (err, result) => {
+    //     if (err) {
+    //         next(err)
+    //     } else {
+    //         res.status(200).send({reminders: result})
+    //     }
+    // })
 })
 
 
