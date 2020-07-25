@@ -15,14 +15,14 @@ const dbMon = mongoose.connection;
 dbMon.once('open', function() {
     console.log("Cloud Atlas Connected")
   });
-let reminder = new Reminder({name: 'ryan', email: 'test', reminder_date: Date.now(), title: "test", message: 'test'});
+// let reminder = new Reminder({name: 'ryan', email: 'test', reminder_date: Date.now(), title: "test", message: 'test'});
 
-reminder.save(function (err) {
-    if (err) {
-        console.log(err)
-    };
-    console.log("WE Saved")
-  });
+// reminder.save(function (err) {
+//     if (err) {
+//         console.log(err)
+//     };
+//     console.log("WE Saved")
+//   });
 
 const app = express();
 const PORT = 4000;
