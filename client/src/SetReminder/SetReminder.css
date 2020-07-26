@@ -77,6 +77,11 @@
     width: 100%;
 }
 
+.validation {
+  color: red;
+  font-weight: 400;
+}
+
 @media screen and (max-width: 600px){
   .contact-form{
     flex-direction: column;
