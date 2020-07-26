@@ -14,24 +14,10 @@ function SetReminder(props) {
     });
 
 
-    const handleChangeName = event => {
-        setState({...state, name: event.target.value })
+    const handleInputChange = event => {
+        setState({...state, [event.target.name]: event.target.value })
     }
-    const handleChangeEmail = event => {
-        setState({...state, email: event.target.value })
-    }
-    const handleChangeDate = event => {
-        setState({...state, date: event.target.value })
-    }
-    const handleChangeTime = event => {
-        setState({...state, time: event.target.value })
-    }
-    const handleChangeTitle = event => {
-        setState({...state, title: event.target.value })
-    }
-    const handleChangeMessage = event => { 
-        setState({...state, message: event.target.value })
-    }
+
 
 
     const makeReminder = (data) => {
@@ -78,14 +64,14 @@ function SetReminder(props) {
             </div>
             <div className="contact-form">
                 <div className="input-fields">
-                    <input type="text" className="input" placeholder="Name" onChange={handleChangeName} target={"name"}/>
-                    <input type="text" className="input" placeholder="Email Address" onChange={handleChangeEmail}/>
-                    <input type="text" className="input" placeholder="Date MUST USE YYYY-MM-DD" onChange={handleChangeDate}/>
-                    <input type="text" className="input" placeholder="Time MUST USE 1:35 pm = 13:35" onChange={handleChangeTime}/>
-                    <input type="text" className="input" placeholder="Title" onChange={handleChangeTitle}/>
+                    <input type="text" className="input" placeholder="Name" onChange={handleInputChange} target={"name"} name="name" />
+                    <input type="text" className="input" placeholder="Email Address" onChange={handleInputChange} name="dmail" />
+                    <input type="text" className="input" placeholder="Date Ex: MM/DD/YYYY" onChange={handleInputChange} name="date" />
+                    <input type="text" className="input" placeholder="Time Ex: 5:15 pm" onChange={handleInputChange} name="time" />
+                    <input type="text" className="input" placeholder="Title" onChange={handleInputChange} name="title" />
                 </div>
                 <div className="msg">
-                    <textarea placeholder="Message you want to be sent" onChange={handleChangeMessage}></textarea>
+                    <textarea placeholder="Message you want to be sent" onChange={handleInputChange} name="message" ></textarea>
                     <div className="btn">
                         <button className="SendButton" onClick={handleSubmit}>send</button>
                     </div>

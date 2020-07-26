@@ -10,6 +10,8 @@ function Reminder(props) {
         window.location.reload(true)
     }
 
+    const reminderDate = props.reminder.reminder_date
+    console.log(reminderDate)
 
     return (
         <div className="Reminder" >
@@ -17,7 +19,7 @@ function Reminder(props) {
                 <div className="Top-Info">
                     <h3>{props.reminder.name}</h3>
                     <h3>{props.reminder.email}</h3>
-                    <h3>{props.reminder.date1[0]}{props.reminder.date1[1]}{props.reminder.date1[2]}{props.reminder.date1[3]}{props.reminder.date1[4]}{props.reminder.date1[5]}{props.reminder.date1[6]}{props.reminder.date1[7]}{props.reminder.date1[8]}{props.reminder.date1[9]} | {props.reminder.time1[0]}{props.reminder.time1[1]}{props.reminder.time1[2]}{props.reminder.time1[3]}{props.reminder.time1[4]}</h3>
+                    <h3>date and time</h3>
                     <h3>{props.reminder.title} </h3>
                 </div>
                 <p>{props.reminder.message}</p>

@@ -9,7 +9,7 @@ function RemindersList(props) {
             <div className="RemindersList" >
             {
                 props.reminders.map(reminder => {
-                    return  <Reminder reminder={reminder} key={reminder.id} />
+                    return  <Reminder reminder={reminder} key={reminder._id} />
                 })
             } 
             </div>
