@@ -11,7 +11,8 @@ function Reminder(props) {
     }
 
     const reminderDate = props.reminder.reminder_date
-    console.log(reminderDate)
+    const dateNtime = new Date(reminderDate)
+
 
     return (
         <div className="Reminder" >
@@ -19,7 +20,7 @@ function Reminder(props) {
                 <div className="Top-Info">
                     <h3>{props.reminder.name}</h3>
                     <h3>{props.reminder.email}</h3>
-                    <h3>date and time</h3>
+                    <h3>{dateNtime.toLocaleString()}</h3>
                     <h3>{props.reminder.title} </h3>
                 </div>
                 <p>{props.reminder.message}</p>

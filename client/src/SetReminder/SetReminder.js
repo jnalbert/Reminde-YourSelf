@@ -22,14 +22,14 @@ function SetReminder(props) {
 
     const makeReminder = (data) => {
         // reqXs to make sure data and time are in the correct formate
-        const regxDate1 = /\d\d\d\d-\d\d-\d\d/;
-        const regxDate2 = /\d\d\d\d-\d-\d\d/;
-        const regxDate3 = /\d\d\d\d-\d\d-\d/;
-        const regxDate4 = /\d\d\d\d-\d-\d/;
+        const regxDate1 = /\d\d-\d\d-\d\d\d\d/
+        const regxDate2 = /\d\d-\d-\d\d\d\d/;
+        const regxDate3 = /\d-\d\d-\d\d\d\d/;
+        const regxDate4 = /\d-\d-\d\d\d\d/;
 
         const regxTime1 = /\d\d:\d\d/;
         const regxTime2 = /\d:\d\d/;
-        // checks if all feils are filled in
+        // checks if all feilds are filled in
         if(!data.name || !data.email || !data.date || !data.time || !data.title || !data.message) {
             alert("All feilds must be filled in")
         } else {
@@ -51,7 +51,8 @@ function SetReminder(props) {
     }
 
     const handleSubmit = (event) => {
-        makeReminder(state);
+        // makeReminder(state);
+        ReminderUtil.setReminder(state)
         window.location.reload(true)
     }
 
@@ -65,7 +66,7 @@ function SetReminder(props) {
             <div className="contact-form">
                 <div className="input-fields">
                     <input type="text" className="input" placeholder="Name" onChange={handleInputChange} target={"name"} name="name" />
-                    <input type="text" className="input" placeholder="Email Address" onChange={handleInputChange} name="dmail" />
+                    <input type="text" className="input" placeholder="Email Address" onChange={handleInputChange} name="email" />
                     <input type="text" className="input" placeholder="Date Ex: MM/DD/YYYY" onChange={handleInputChange} name="date" />
                     <input type="text" className="input" placeholder="Time Ex: 5:15 pm" onChange={handleInputChange} name="time" />
                     <input type="text" className="input" placeholder="Title" onChange={handleInputChange} name="title" />

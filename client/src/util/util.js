@@ -4,18 +4,22 @@ const baseURL = 'http://localhost:4000'
 
 
 const ReminderUtil = {
-    setReminder(data) {
+
+    setReminder (data) {
         axios.post(`${baseURL}/setReminder`, {
             reminder: {
-                name: `'${data.name}'`,
-                email: `'${data.email}'`,
-                date: `'${data.date}'`,
-                time: `'${data.time}'`,
-                title: `'${data.title}'`,
-                message: `'${data.message}'`
+                name: data.name,
+                email: data.email,
+                date: data.date,
+                time: data.time,
+                title: data.title,
+                message: data.message
             }
+            
         })
+        
     },
+
 
     getReminders() {
         axios.get(`${baseURL}/getReminders`)
@@ -26,11 +30,13 @@ const ReminderUtil = {
 
 
     deletReminder(elID) {
-        const id = elID.id
+        const id = elID._id
         console.log(id);
         axios.delete(`${baseURL}/deleteReminder/${id}`) 
     }
-}
+    }
+
+
 
 
 
