@@ -4,8 +4,8 @@ const cors = require('cors');
 const morgan = require('morgan');
 const errorhandler = require('errorhandler');
 const bodyParser = require('body-parser');
-var Config = require('config-js');
-var config = new Config('./config.js');
+const Config = require('config-js');
+const config = new Config('./config.js');
 const mongoose = require('mongoose')
 
 

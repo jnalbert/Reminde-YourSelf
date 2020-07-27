@@ -1,43 +1,35 @@
 const cron = require('node-cron');
 const nodemailer = require('nodemailer');
 const axios = require('axios');
-const { response } = require('express');
+const Config = require('config-js');
 
 
-
+const config = new Config('./config.js');
 
 // mail transporter
 let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
         user: "reminder.buddy879@gmail.com",
-        pass: "PASSWORD879"
+        pass: config.get('email_pass')
     }
 })
 
-// // makes the date readable
-// const goodDate = (date) => {
-//     const gooddate = date[0]+date[1]+date[2]+date[3]+date[4]+date[5]+date[6]+date[7]+date[8]+date[9];  
-//     return gooddate;       
-// }
-
-// //makes the time readable
-// const goodTime = (time) => {
-//     const goodtime = time[0]+time[1]+time[2]+time[3]+time[4];
-//     return goodtime
-// }
+console.log("Cron Job Started")
 
 
 // begining of the cron scheduler
-cron.schedule(" * * * * * ", () => {
+// cron.schedule(" * * * * * ", () => {
     console.log('---------------')
     console.log("cron is running")
+    console.log
 
 
     // formats time
     let dateBad = new Date();
     let miuns = dateBad.setSeconds(0, 0)
     const today = new Date(miuns)
+    console.log(dateBad.toLocaleString());
    
 
     // api to query the db
@@ -65,8 +57,8 @@ cron.schedule(" * * * * * ", () => {
                         from: "reminder.buddy879@gmail.com",
                         to: `${rem.email}`,
                         subject: `${rem.title}`,
-                        text: `Hello ${rem.name} you have a reminder with a 
-message: ${rem.message}`
+                        text: `Hello ${rem.name} you have a reminder with a message 
+${rem.message}`
                     }
                     // send the eamil
                     transporter.sendMail(mailOptions, (err, info) => {
@@ -87,4 +79,4 @@ message: ${rem.message}`
             })
         };
     })
-})
+// })

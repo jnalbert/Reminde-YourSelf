@@ -9,7 +9,7 @@ function App(props) {
  
 
  
-  const getReminder = () => {axios.get('http://localhost:4000/getReminders')
+  const getReminder = () => {axios.get('/api/getReminders')
   .then(response => {
     setState({reminders: response.data.reminders})
   })

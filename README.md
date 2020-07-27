@@ -1,13 +1,13 @@
 1. npm install pm2 -g
-2. brew install ngix
+2. brew install nginx
 3. cd /usr/local/etc/nginx
 4. add server config below to nginx.conf
 5. cd /var mkdir www
-6. cs /var/www sudo chmod -R 777 /var/www
+6. cd /var/www sudo chmod -R 777 /var/www
 7. npm install in client and server
-8. npm run build in client
+8. cd client npm run build
 9. pm2 start
-10. brew services start nigx
+10. brew services restart nginx
 
 Commands:
 

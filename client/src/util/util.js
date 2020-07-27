@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const baseURL = 'http://localhost:4000'
+const baseURL = '/api'
 
 
 const ReminderUtil = {
