@@ -3,7 +3,7 @@
 body{
   background: url('https://raw.githubusercontent.com/codingmarket07/Responsive-Contact-us-form/master/bg.jpg') no-repeat top center;
   background-size: cover;
-  height: 100vh;
+  height: 150vh;
 }
 
 *{
@@ -17,7 +17,7 @@ body{
 
 .heading {
   padding: .77rem 0;
-  background-color: rgba(0, 0, 0, 0.86);
+  background-color: rgba(0, 0, 0, 0.84);
   text-align: center;
   font-family: 'Roboto', sans-serif;
   font-size: 1.80rem;
@@ -27,12 +27,24 @@ body{
 
 .SetReminder {
  left: 20%;
- display: flex;
+ display: flexbox;
 }
 
-.app {
+
+.box {
   display: flex;
+  flex-wrap: wrap;
+  background-color: black;
+  height: 100%;
+  flex-direction: column;
 }
+
+/* .app {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: black;
+  height: 100%;
+} */
 
 .footer {
   position:absolute;
@@ -41,4 +53,10 @@ body{
   height:60px;   /* Height of the footer */
   justify-content: center;
   text-align: center;
+}
+
+@media screen and (max-width: 800px){
+  .footer {
+    top: 140%;
+  }
 }

@@ -26,11 +26,13 @@ function App(props) {
     <div>
       <h1 className="heading">Remind YourSelf</h1>
       <div className="App">
-        <div className="SetReminder">
-          <SetReminder  />
-        </div>
-        <div className="RemindersList">
-          <RemindersList reminders={state.reminders}/>
+        <div className="box" >
+          <div className="SetReminder">
+            <SetReminder  />
+          </div>
+          <div className="RemindersList">
+            <RemindersList reminders={state.reminders}/>
+          </div>
         </div>
       </div>
       <div className="footer">
