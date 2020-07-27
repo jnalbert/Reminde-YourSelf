@@ -14,7 +14,8 @@ module.exports = {
       script: "./cron-job.js",
       cron_restart: "* * * * *",
       watch: true,
-      autorestart: false
+      autorestart: false,
+      max_memory_restart: '1G'
     }
   ]
   };
