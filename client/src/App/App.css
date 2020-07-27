@@ -17,7 +17,7 @@ body{
 
 .heading {
   padding: .77rem 0;
-  background-color: rgba(0, 0, 0, 0.83);
+  background-color: rgba(0, 0, 0, 0.86);
   text-align: center;
   font-family: 'Roboto', sans-serif;
   font-size: 1.80rem;
@@ -41,5 +41,4 @@ body{
   height:60px;   /* Height of the footer */
   justify-content: center;
   text-align: center;
-  opacity: 80%;
 }
