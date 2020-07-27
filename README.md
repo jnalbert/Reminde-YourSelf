@@ -9,6 +9,15 @@
 9. pm2 start
 10. brew services restart nginx
 
+to change update the ssh
+11. if code is changed pull changes from reop on ssh
+12. pm2 kill
+13. restart pm2
+14. sudo service nginx restart
+15. npm run build in client
+14. pm2 save
+15. pm2 startup
+
 Commands:
 
 pm2 stop all - kills pm2
