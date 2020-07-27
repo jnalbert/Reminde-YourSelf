@@ -33,7 +33,10 @@ function App(props) {
           <RemindersList reminders={state.reminders}/>
         </div>
       </div>
-
+      <div className="footer">
+        <p>Created By Justin Albert</p>
+        <p>© ® all rights reserved</p>
+      </div>
     </div>
   );
 }
