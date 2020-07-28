@@ -10,9 +10,11 @@
 10. brew services restart nginx
 
 <!-- to change update the ssh -->
-11. if code is changed pull changes from reop on ssh
+11. cd .ssh
+11. ssh -i "Reminder AMI.pem" ec2-user@ec2-54-202-116-108.us-west-2.compute.amazonaws.com
+11. if code is changed pull changes from git reop in ssh
 12. pm2 kill
-13. restart pm2
+13. pm2 start
 14. sudo service nginx restart
 15. npm run build in client
 14. pm2 save
