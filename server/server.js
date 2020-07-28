@@ -29,10 +29,10 @@ app.use(bodyParser.json())
 app.post('/setReminder', (req, res, next) => {
     const body = req.body.reminder;
     // console.log(body.name)
-    const timeUTC = new Date(`${body.date} ${body.time}`)
+    console.log(body.date)
 
 
-    const reminder = new Reminder({name: body.name, email: body.email, reminder_date: timeUTC, title: body.title, message: body.message})
+    const reminder = new Reminder({name: body.name, email: body.email, reminder_date: body.date, title: body.title, message: body.message})
 
     reminder.save((err) => {
         if (err) {

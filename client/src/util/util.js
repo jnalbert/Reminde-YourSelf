@@ -6,12 +6,12 @@ const baseURL = '/api'
 const ReminderUtil = {
 
     setReminder (data) {
+        const timeUTC = new Date(`${data.date} ${data.time}`)
         axios.post(`${baseURL}/setReminder`, {
             reminder: {
                 name: data.name,
                 email: data.email,
-                date: data.date,
-                time: data.time,
+                date: timeUTC,
                 title: data.title,
                 message: data.message
             }
