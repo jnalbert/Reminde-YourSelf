@@ -31,7 +31,6 @@ app.post('/setReminder', (req, res, next) => {
     // console.log(body.name)
     console.log(body.date)
 
-
     const reminder = new Reminder({name: body.name, email: body.email, reminder_date: body.date, title: body.title, message: body.message})
 
     reminder.save((err) => {
