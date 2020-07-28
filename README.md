@@ -9,7 +9,7 @@
 9. pm2 start
 10. brew services restart nginx
 
-to change update the ssh
+<!-- to change update the ssh -->
 11. if code is changed pull changes from reop on ssh
 12. pm2 kill
 13. restart pm2

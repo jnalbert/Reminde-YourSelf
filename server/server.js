@@ -10,9 +10,7 @@ const mongoose = require('mongoose')
 
 
 // conect to monggose db
-mongoose.connect(config.get('mongo_uri'), {
-  useNewUrlParser: true,
-})
+mongoose.connect(config.get('mongo_uri'), { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false})
 const dbMon = mongoose.connection;
 dbMon.once('open', function() {
     console.log("Cloud Atlas Connected")
@@ -32,6 +30,7 @@ app.post('/setReminder', (req, res, next) => {
     const body = req.body.reminder;
     // console.log(body.name)
     const timeUTC = new Date(`${body.date} ${body.time}`)
+
 
     const reminder = new Reminder({name: body.name, email: body.email, reminder_date: timeUTC, title: body.title, message: body.message})
 

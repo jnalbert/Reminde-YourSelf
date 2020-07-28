@@ -22,7 +22,6 @@ console.log("Cron Job Started")
 // cron.schedule(" * * * * * ", () => {
     console.log('---------------')
     console.log("cron is running")
-    console.log
 
 
     // formats time
