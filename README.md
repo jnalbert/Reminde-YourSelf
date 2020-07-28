@@ -9,7 +9,7 @@
 9. pm2 start
 10. brew services restart nginx
 
-to change update the ssh
+11. to change update the ssh
 11. cd .ssh
 11. ssh -i "Reminder AMI.pem" ec2-user@ec2-54-202-116-108.us-west-2.compute.amazonaws.com
 11. if code is changed pull changes from git reop in ssh
